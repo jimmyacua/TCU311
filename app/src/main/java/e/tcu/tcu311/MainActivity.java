@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnDa
                     bundle.putInt("anio", anio);
                     intent.putExtras(bundle);
                     startActivity(intent);
-                } else if(which == 1){
+                } else if(which==1){
                     //ver eventos
                     Intent intent = new Intent(getApplication(), ViewEventActivity.class);
                     Bundle bundle = new Bundle();

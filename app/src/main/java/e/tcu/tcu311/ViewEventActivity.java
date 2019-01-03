@@ -26,7 +26,8 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
         listView.setOnItemLongClickListener(this);
 
         Bundle bundle = getIntent().getExtras();
-        int dia=0, mes=0, anio=0;
+        int dia, mes, anio;
+        dia = 0; mes = 0; anio = 0;
         dia = bundle.getInt("dia");
         mes = bundle.getInt("mes");
         anio = bundle.getInt("anio");
@@ -46,8 +47,8 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
             "fechaDesde date, " +
             "horaDesde time, " +
             "fechaHasta date, " +
-            "horaHasta time)";
-        */
+            "horaHasta time)";*/
+
 
         try{
             c = db.rawQuery(sql, null);
@@ -62,26 +63,15 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
                 } while (c.moveToNext());
                 listView.setAdapter(arrayAdapter);
             } else{
-                this.finish();
+                //this.finish();
             }
         }catch (Exception e){
             Toast.makeText(getApplication(),"Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
             this.finish();
         }
-
-
     }
 
     private void eliminar(String dato){
-        /*"idEvento int identity, " +
-            "nombreEvento varchar(50), " +
-            "descripcion varchar(100), " +
-            "fechaDesde date, " +
-            "horaDesde time, " +
-            "fechaHasta date, " +
-            "horaHasta time)";
-        */
-
         String [] datos = dato.split(", ");
         String sql = "delete from eventos where nombreEvento = '"+datos[0]+"' and descripcion = '"+datos[1]+"'"
                 + " and fechaDesde = '"+datos[2]+"' and fechaHasta = '"+datos[3]+"'";

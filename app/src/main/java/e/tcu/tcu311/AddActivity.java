@@ -28,9 +28,9 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         Bundle bundle = getIntent().getExtras();
         int dia = 0, mes = 0, anio = 0;
-        bundle.getInt("dia");
-        bundle.getInt("mes");
-        bundle.getInt("anio");
+        dia = bundle.getInt("dia");
+        mes = bundle.getInt("mes");
+        anio = bundle.getInt("anio");
         fechaDesde.setText(dia+" - " + mes +" - " + anio);
         fechaHasta.setText(dia+" - " + mes +" - " + anio);
 
@@ -56,7 +56,7 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             "fechaHasta date, " +
             "horaHasta time)";
             */
-            String sql = "insert into eventos+"+
+            String sql = "insert into eventos"+
                     "(nombreEvento,descripcion,fechaDesde , horaDesde, fechaHasta, horaHasta) values ('" +
                     nombreEvento.getText() +
                     "','" + descripcion.getText() +
@@ -77,10 +77,11 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
             catch (Exception e){
                 Toast.makeText(getApplication(), "Error"+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
+            this.finish();
 
         } else{
             this.finish();
-            return;
         }
+        return;
     }
 }
