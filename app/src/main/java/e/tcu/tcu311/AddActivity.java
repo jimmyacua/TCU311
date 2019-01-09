@@ -5,14 +5,17 @@ import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class AddActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText nombreEvento, descripcion, fechaDesde, horaDesde, fechaHasta, horaHasta;
-
+    private Spinner horas;
     private Button guardar, cancelar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +28,10 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         horaDesde = (EditText) findViewById(R.id.edtHoraInicio);
         fechaHasta = (EditText) findViewById(R.id.edtFechaHasta);
         horaHasta = (EditText) findViewById(R.id.edtHoraHasta);
+        horas = (Spinner) findViewById(R.id.spinnerHoras);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.horas, R.layout.support_simple_spinner_dropdown_item);
+        horas.setAdapter(adapter);
 
         Bundle bundle = getIntent().getExtras();
         int dia = 0, mes = 0, anio = 0;
