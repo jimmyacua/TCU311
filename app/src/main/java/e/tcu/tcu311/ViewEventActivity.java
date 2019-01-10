@@ -58,10 +58,11 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
                     nombre = c.getString(1);
                     descripcion = c.getString(2);
                     fechaDesde = c.getString(3);
-                    fechaHasta = c.getString(5);
-                    arrayAdapter.add(nombre+", "+ descripcion+", "+fechaDesde+", "+fechaHasta);
+                    //fechaHasta = c.getString(5);
+                    arrayAdapter.add(nombre+", "+ descripcion+", "+fechaDesde);
                 } while (c.moveToNext());
                 listView.setAdapter(arrayAdapter);
+                c.close();
             } else{
                 //this.finish();
             }
@@ -74,7 +75,7 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
     private void eliminar(String dato){
         String [] datos = dato.split(", ");
         String sql = "delete from eventos where nombreEvento = '"+datos[0]+"' and descripcion = '"+datos[1]+"'"
-                + " and fechaDesde = '"+datos[2]+"' and fechaHasta = '"+datos[3]+"'";
+                + " and fechaDesde = '"+datos[2]+"'";
         try {
             arrayAdapter.remove(dato);
             listView.setAdapter(arrayAdapter);

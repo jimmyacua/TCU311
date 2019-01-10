@@ -10,6 +10,7 @@
         android:id="@+id/edtNombreEvento"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:maxLength="50"
         android:hint="Ingrese nombre de evento."
         android:inputType="text" />
 
@@ -18,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edtNombreEvento"
+        android:maxLength="100"
         android:hint="Ingrese descripción del evento."
         android:inputType="text"
         tools:ignore="MissingConstraints"
@@ -29,70 +31,71 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edtDescripción"
-        android:text="Desde"/>
+        android:layout_alignStart="@+id/itvHora"
+        android:layout_marginTop="-1dp"
+        android:text="Fecha (DD/MM/AA)" />
 
-    <EditText
-        android:id="@+id/edtFechaDesde"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinnerDias"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtDescripción"
-        android:inputType="date" />
+        android:layout_below="@+id/itvDesde" />
 
-    <EditText
-        android:id="@+id/edtHoraInicio"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinnerMes"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edtFechaDesde"
-        android:inputType="time" />
+        android:layout_below="@+id/itvDesde"
+        android:layout_toEndOf="@+id/btnGuardar" />
 
-   <TextView
-       android:id="@+id/itvHasta"
-       android:layout_below="@+id/edtHoraInicio"
-       android:text="Hasta"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content" />
-
-    <EditText
-        android:id="@+id/edtFechaHasta"
-        android:layout_width="match_parent"
+    <Spinner
+        android:id="@+id/spinnerAnio"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/itvHasta"
-        android:inputType="date" />
+        android:layout_below="@+id/itvDesde"
+        android:layout_marginStart="87dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/btnGuardar" />
 
-    <EditText
-        android:id="@+id/edtHoraHasta"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/itvHora"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/edtFechaHasta"
-        android:inputType="time" />
+        android:layout_below="@+id/spinnerDias"
+        android:layout_marginTop="0dp"
+        android:text="Hora" />
+    <Spinner
+        android:id="@+id/spinnerHoras"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/itvHora"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="141dp" />
+
+    <Spinner
+        android:id="@+id/spinnerMinutos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/edtDescripción"
+        android:layout_alignBottom="@+id/spinnerHoras"
+        android:layout_marginEnd="187dp"
+        android:layout_marginBottom="-2dp" />
+
    <Button
        android:id="@+id/btnGuardar"
        android:text="Guardar"
-       android:layout_below="@id/edtHoraHasta"
+       android:layout_below="@id/spinnerHoras"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content" />
    <Button
        android:id="@+id/btnCancelar"
        android:text="Cancelar"
        android:layout_alignBottom="@+id/btnGuardar"
-       android:layout_alignEnd="@+id/edtHoraHasta"
+       android:layout_alignEnd="@+id/edtDescripción"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content" />
 
-   <Spinner
-       android:id="@+id/spinnerHoras"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
-       android:layout_below="@id/btnGuardar"
-       android:layout_marginStart="10dp"
-       android:layout_marginBottom="141dp" />
 
-    <Spinner
-        android:id="@+id/spinnerMinutos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/spinnerHoras"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="141dp" />
 
 </RelativeLayout>

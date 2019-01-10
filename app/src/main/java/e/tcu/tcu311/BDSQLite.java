@@ -11,9 +11,7 @@ public class BDSQLite extends SQLiteOpenHelper {
             "nombreEvento varchar(50), " +
             "descripcion varchar(100), " +
             "fechaDesde date, " +
-            "horaDesde time, " +
-            "fechaHasta date, " +
-            "horaHasta time)";
+            "horaDesde time)";
 
     public BDSQLite(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
