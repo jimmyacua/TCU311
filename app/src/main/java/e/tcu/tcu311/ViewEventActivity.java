@@ -53,7 +53,7 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
                     nombre = cFijos.getString(1);
                     descripcion = cFijos.getString(2);
                     fechaDesde = cFijos.getString(3);
-                    arrayAdapter.add(nombre+", "+ descripcion+", "+fechaDesde);
+                    arrayAdapter.add(nombre+", "+ descripcion+", Fecha: "+fechaDesde);
                 } while (cFijos.moveToNext());
                 listView.setAdapter(arrayAdapter);
                 cFijos.close();
@@ -65,7 +65,7 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
                     descripcion = c.getString(2);
                     fechaDesde = c.getString(3);
                     horaInicio = c.getString(4);
-                    arrayAdapter.add(nombre+", "+ descripcion+", "+fechaDesde+", "+horaInicio);
+                    arrayAdapter.add(nombre+", "+ descripcion+", Fecha: "+fechaDesde+", Hora: "+horaInicio);
                 } while (c.moveToNext());
                 listView.setAdapter(arrayAdapter);
                 c.close();
