@@ -37,34 +37,42 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
         db = bd.getReadableDatabase();
 
         String sql = "select * from eventos where fechaDesde = '"+ cadena +"'";
-        Cursor c;
+        String sqlFijos = "select * from eventosFijos where fechaDesde = '"+ cadena +"'";
+        Cursor c, cFijos;
 
-        String nombre, fechaDesde, fechaHasta, descripcion;
-
-        /*"idEvento int identity, " +
-            "nombreEvento varchar(50), " +
-            "descripcion varchar(100), " +
-            "fechaDesde date, " +
-            "horaDesde time, " +
-            "fechaHasta date, " +
-            "horaHasta time)";*/
-
-
+        String nombre, fechaDesde, horaInicio, descripcion;
+        boolean existeEventoFijo, existeEvento;
+        existeEvento = existeEventoFijo = false;
         try{
             c = db.rawQuery(sql, null);
+            cFijos = db.rawQuery(sqlFijos, null);
             arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+            if(cFijos.moveToFirst()){
+                existeEventoFijo = true;
+                do{
+                    nombre = cFijos.getString(1);
+                    descripcion = cFijos.getString(2);
+                    fechaDesde = cFijos.getString(3);
+                    arrayAdapter.add(nombre+", "+ descripcion+", "+fechaDesde);
+                } while (cFijos.moveToNext());
+                listView.setAdapter(arrayAdapter);
+                cFijos.close();
+            }
             if(c.moveToFirst()){
+                existeEvento = true;
                 do{
                     nombre = c.getString(1);
                     descripcion = c.getString(2);
                     fechaDesde = c.getString(3);
-                    //fechaHasta = c.getString(5);
-                    arrayAdapter.add(nombre+", "+ descripcion+", "+fechaDesde);
+                    horaInicio = c.getString(4);
+                    arrayAdapter.add(nombre+", "+ descripcion+", "+fechaDesde+", "+horaInicio);
                 } while (c.moveToNext());
                 listView.setAdapter(arrayAdapter);
                 c.close();
-            } else{
-                //this.finish();
+            }
+            if(!existeEvento && !existeEventoFijo){
+                Toast.makeText(getApplication(),"No existen eventos ese día", Toast.LENGTH_SHORT).show();
+                this.finish();
             }
         }catch (Exception e){
             Toast.makeText(getApplication(),"Error: "+e.getMessage(), Toast.LENGTH_SHORT).show();
@@ -75,7 +83,7 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
     private void eliminar(String dato){
         String [] datos = dato.split(", ");
         String sql = "delete from eventos where nombreEvento = '"+datos[0]+"' and descripcion = '"+datos[1]+"'"
-                + " and fechaDesde = '"+datos[2]+"'";
+                + " and fechaDesde = '"+datos[2]+"' and horaDesde = '"+datos[3]+"'";
         try {
             arrayAdapter.remove(dato);
             listView.setAdapter(arrayAdapter);

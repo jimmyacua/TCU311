@@ -52,12 +52,14 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         anios.setAdapter(adapterAnio);
 
         Bundle bundle = getIntent().getExtras();
-        //int dia = 0, mes = 0, anio = 0;
-        //dia = bundle.getInt("dia");
-        //mes = bundle.getInt("mes");
-        //anio = bundle.getInt("anio");
-        //fechaDesde.setText(dia+" - " + mes +" - " + anio);
+        int dia = 0, mes = 0, anio = 0;
 
+        dia = adapterDias.getPosition(bundle.getInt("dia")+"");
+        dias.setSelection(dia);
+        mes = adapterMes.getPosition(bundle.getInt("mes")+"");
+        meses.setSelection(mes);
+        anio = adapterAnio.getPosition(bundle.getInt("anio")+"");
+        anios.setSelection(anio);
 
         guardar = (Button) findViewById(R.id.btnGuardar);
         cancelar = (Button) findViewById(R.id.btnCancelar);
@@ -78,14 +80,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
             hora = horas.getSelectedItem().toString() + ":" + minutos.getSelectedItem().toString()+":"+"00";
 
-            /*"idEvento int identity, " +
-            "nombreEvento varchar(50), " +
-            "descripcion varchar(100), " +
-            "fechaDesde date, " +
-            "horaDesde time, " +
-            "fechaHasta date, " +
-            "horaHasta time)";
-            */
             String sql = "insert into eventos"+
                     "(nombreEvento,descripcion,fechaDesde , horaDesde) values ('" +
                     nombreEvento.getText() +
