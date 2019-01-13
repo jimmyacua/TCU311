@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.CalendarView;
 
+import sun.bob.mcalendarview.MCalendarView;
+
 public class MainActivity extends AppCompatActivity implements CalendarView.OnDateChangeListener {
 
     private CalendarView calendarView;
@@ -17,6 +19,11 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnDa
 
         calendarView = (CalendarView) findViewById(R.id.calendarView);
         calendarView.setOnDateChangeListener(this);
+
+        //MCalendarView cal = (MCalendarView) findViewById(R.id.calendar);
+        //cal.markDate(2019, 1, 14);
+        //cal.markDate(2019, 1, 14);
+        //cal.markDate(2019, 1, 14);
     }
 
     @Override

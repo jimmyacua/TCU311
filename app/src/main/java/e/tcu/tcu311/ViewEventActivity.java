@@ -82,8 +82,10 @@ public class ViewEventActivity extends AppCompatActivity implements AdapterView.
 
     private void eliminar(String dato){
         String [] datos = dato.split(", ");
+        String [] fecha = datos[2].split(": ");
+        String [] hora = datos[3].split(": ");
         String sql = "delete from eventos where nombreEvento = '"+datos[0]+"' and descripcion = '"+datos[1]+"'"
-                + " and fechaDesde = '"+datos[2]+"' and horaDesde = '"+datos[3]+"'";
+                + " and fechaDesde = '"+fecha[1]+"' and horaDesde = '"+hora[1]+"'";
         try {
             arrayAdapter.remove(dato);
             listView.setAdapter(arrayAdapter);
